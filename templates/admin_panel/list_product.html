@@ -1,0 +1,125 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+ <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+     
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Product Lists
+                  <a class="waves-effect waves-light btn" href="/prodcut/add/">Add Product</a>
+                  &nbsp;&nbsp;&nbsp;<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Order names" title="Type in a id" style="margin-left: 200px;">
+                  &nbsp;&nbsp;&nbsp;<input type="text" id="KmyInput" onkeyup="KmyFunction()" placeholder="Search for Order Keywords" title="Type in a id" style="margin-left: 565px;">
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table" id="myTable">
+                    <thead class=" text-primary">
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Keyword
+                      </th>
+                      <th>
+                        MRP
+                      </th>
+                       <th>
+                        SP
+                      </th>
+                      <th class="text-right">
+                        DELETE
+                      </th>
+                    </thead>
+                    <tbody>
+                      {% for key,val in all_products.items  %}
+                      <tr>
+                        <td>
+                            <a href="/prodcut/edit/{{key}}/">{{val.Product_Name}}</a>
+                        </td>
+                        <td>
+                          {{val.keywords}}
+                        </td>
+                        <td>
+                          {{val.Product_MRP}}
+                        </td>
+                        <td>
+                          {{val.Product_SP}}
+                        </td>
+                      
+                        <td class="text-right">
+                        <a class="waves-effect waves-light btn" href="/delete/{{key}}/product/productlist/">delete</a>
+                        </td>
+                      </tr>                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+<!--  -->
+<!-- <div id="pageNavPosition" style="padding-top: 20px" align="center">
+</div> -->
+
+<script type="text/javascript">
+var pager = new Pager('tablepaging', 10);
+pager.init();
+pager.showPageNav('pager', 'pageNavPosition');
+pager.showPage(1);
+</script>
+
+
+
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+  </script>
+  <script>
+    function KmyFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("KmyInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+    </script>
+
+                  <!--  -->
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+  <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Add Location</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST">
+                 {% csrf_token %} 
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Area Name</label>
+                        <input type="text" class="form-control" name="areaname" placeholder="Area Name" required="true">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>District</label>
+                        <input type="text" class="form-control" name="district" placeholder="District" required="true">
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>State</label>
+                        <input type="text" class="form-control" name="state" placeholder="State" required="true">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Pincode</label>
+                        <input type="number" class="form-control" name="pincode" placeholder="Pincode" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1"> 
+                      <div class="form-group">
+                        <input type="submit" class="form-control" >
+                      </div>
+                    </div>
+                </form>
+              </div>
+            </District>
+          </div>
+        </div>
+      </Pincode
+
+{% endblock %}

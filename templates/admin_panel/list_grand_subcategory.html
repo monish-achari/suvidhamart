@@ -1,0 +1,79 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+
+<div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+     
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Grand category lists
+                  <a class="waves-effect waves-light btn" href="/grand-category/add/">Add Grand category</a>
+                  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for category..." title="Type in a id" style="margin-left: 50px;">
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table" id="myTable">
+                    <thead class=" text-primary">
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Description
+                      </th>
+                       <th class="text-right">
+                        delete
+                      </th>
+                    </thead>
+                    <tbody>
+                      {% for key,val in all_subcategories.items  %}
+                      <tr>
+                        <td>
+                            <!-- <a href="/sub-category/edit/{{key}}/">{{val.Grand_Cat_Name}}</a> -->
+                            <a href="/grand-category/edit/{{key}}">{{val.Grand_Cat_Name}}</a>
+                        </td>
+                        <td>
+                          {{val.Grand_Cat_Details}}
+                        </td>
+                        <td class="text-right">
+                        <a class="waves-effect waves-light btn" href="/delete/{{key}}/grandcategory/grandcategory/">delete</a>
+                        </td>
+                      </tr>                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+        </script>
+    {% endblock %} 

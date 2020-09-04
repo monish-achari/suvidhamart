@@ -1,0 +1,149 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+<div class="main-panel" id="main-panel">
+<div class="panel-header panel-header-sm">
+      </div>
+<div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">
+                  {% if not delivered%}
+                  Ordered Products
+                  {% else %}
+                  Delivered Products
+                  {% endif %}
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="alert alert-primary">
+                  <span><b> Payment Mode :  </b> </span>
+                  <span><b>  {{ordered_products.paymentMode}} </b> </span>
+                  <br>
+
+                  <span><b> Ordered Date :  </b> </span>
+                  <span><b> {{ordered_products.orderDate}} </b> </span>
+                  <br>
+                <!-- </div>
+                <div class="alert alert-primary"> -->
+                  <span><b> Delivery Date :  </b> </span>
+                  <span><b> {{ordered_products.deliveryDate}} </b> </span>
+                </div>
+
+                <div class="alert alert-primary">
+                  <span><b> Product Discount : </b> </span>
+                  <span><b> {{ordered_products.normalDiscount}} </b> </span>
+                  <br>
+                  <span><b> Essentials Discount  </b> </span>
+                  <span><b> {{ordered_products.essentialsDiscount}} </b> </span>
+                  <br>
+                  <span><b> Delivery Charge : </b> </span>
+                  <span><b> {{ordered_products.deliveryAmount}} </b> </span>
+                </div>
+
+                <div class="alert alert-primary">
+                  <span><b> Total Number of items :  </b> </span>
+                  <span><b> {{ products|length }} </b> </span>
+                  <br>
+                  <span><b> Total MRP :  </b> </span>
+                  <span><b> {{ordered_products.totalMrp}} </b> </span>
+                  <br>
+                <!-- </div>
+                <div class="alert alert-primary"> -->
+                  <span><b> Sub Total :  </b> </span>
+                  <span><b> {{ordered_products.subtotal}} </b> </span>
+                </div>
+                {% for val in products %}
+              		{% if forloop.counter|divisibleby:"3" %}
+                	<div class="alert alert-success">
+              		{% elif forloop.counter|divisibleby:"4" %}
+              		<div class="alert alert-info">
+              		{% elif forloop.counter|divisibleby:"5" %}
+                	<div class="alert alert-danger">
+              		{% elif forloop.counter|divisibleby:"2" %}
+                <div class="alert alert-warning">
+              		{% else %}
+                <div class="alert alert-primary">
+                	{% endif %}
+                  <span> Product Name - <b> {{val.product_Name}}</b></br>
+                  		 MRP -     <b>{{val.product_MRP}}</b></br>
+                  		 PRODUCT QUANTITY -      <b>{{val.product_Quantitiy}}</b></br>
+                  		 PRODUCT QUANTITY TYPE -      <b>{{val.product_Quantity_Type}}</b></br>
+                  		 PRODUCT QUANTITY UNIT -      <b>{{val.prodctQuantityUnit}}</b></br>
+                       PRODUCT SELLING PRICE -      <b>{{val.product_SP}}</b><br>
+                       <br>
+                      {% for im in val.product_Image_Url %}
+                      {% if im != "" %}
+                      {% if forloop.counter == 1 %}
+                      <img src="{{im}}" width="100px" height="100px" style="margin-bottom: 10px; margin-right: 10px;"> 
+                      {% endif %}
+                      {% endif %}
+                      {% endfor %}
+                  </span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-user">
+              <div class="image">
+                <!-- <img src="{{userdetails.userImageUrl}}" alt=""> -->
+              </div>
+              <div class="card-body" style="min-height: 170px;">
+                <div class="author">
+                  <h5>USER ID : {{order_id}}</h5><br>
+                  <h6>{{address.name}}</h6><br>
+                  <h6>{{address.mobileNumber}}</h6><br>
+                  <a href="#">
+                    <h5 class="title">Address</h5>
+                  </a>
+                  <p class="description">
+                   <b> {{ address.addressNickName }} </b>
+                  </p>
+                  <p class="description">
+                   <b> {{ address.houseNo }} </b>
+                  </p>
+                  <p class="description">
+                    <b> {{ address.societyName }} </b>
+                   </p>
+                   <p class="description">
+                    <b> {{ address.landmark }} </b>
+                   </p>
+                   <p class="description">
+                    <b> {{ address.pincode }} </b>
+                   </p>
+                   <p class="description">
+                    <b> {{ address.mobileNumber }} </b>
+                   </p>
+                </div>
+              </div>
+              <hr>
+              <div class="button-container">
+                <div class="col-md-12">
+                {% if not delivered%}
+                        <button class="btn btn-primary btn-block" onclick="nowuiDashboard.showNotification('bottom','right','Order has been Cancelled...!');window.setTimeout(function() {window.location.href = '/order/update/{{order_id}}/{{sub_id}}/Order-Cancelled/';},1000);">
+                          Cancel Product 
+                      	</button>
+                        <button class="btn btn-primary btn-block" onclick="nowuiDashboard.showNotification('bottom','right','Order has been out to delivery...!');window.setTimeout(function() {window.location.href = '/order/update/{{order_id}}/{{sub_id}}/Order-is-Out-For-Delivery/';},1000);">
+                          Out to Delivery 
+                        </button>
+                        <button class="btn btn-primary btn-block" onclick="nowuiDashboard.showNotification('bottom','right','Order has been delivered...!');window.setTimeout(function() {window.location.href = '/order/update/{{order_id}}/{{sub_id}}/Order-Delivered/';},1000);">
+                          Delivered
+                        </button>
+                {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+
+{% endblock %}

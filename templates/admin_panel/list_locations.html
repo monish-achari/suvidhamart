@@ -1,0 +1,68 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+ <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+     
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Locations
+                  <a class="waves-effect waves-light btn" href="/location/add/">Add Location</a>
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Area Name
+                      </th>
+                      <th>
+                        District
+                      </th>
+                       <th>
+                        State
+                      </th>
+                      <th>
+                        Pincode
+                      </th>
+                      <th class="text-right">
+                        DELETE
+                      </th>
+                    </thead>
+                    <tbody>
+                      {% for key,val in all_location.items  %}
+                      <tr>
+                        <td>
+                            <a href="/offers/edit/{{key}}/">{{val.AreaName}}</a>
+                        </td>
+                        <td>
+                          {{val.District}}
+                        </td>
+                        <td>
+                          {{val.State}}
+                        </td>
+                        <td>
+                          {{val.Pincode}}
+                        </td>
+                      
+                        <td class="text-right">
+                        <a class="waves-effect waves-light btn" href="/delete/{{key}}/location/locations_list/">delete</a>
+                        </td>
+                      </tr>                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

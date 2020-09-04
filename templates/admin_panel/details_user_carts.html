@@ -1,0 +1,84 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+<div class="main-panel" id="main-panel">
+<div class="panel-header panel-header-sm">
+      </div>
+<div class="content">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">
+                  Cart Product                
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="alert alert-primary">
+                  <span><b>  Item Added Date : </b> </span>
+                  <span><b>  {{cart_details.item_Added_Date}} </b> </span>
+                  <br>
+                  <span><b> Product Name :  </b> </span>
+                  <span><b> {{cart_details.product_Name}} </b> </span>
+                  <br>
+
+                  <span><b> Product Details :  </b> </span>
+                  <span><b> {{cart_details.product_Details}} </b> </span>
+                  <br>
+                <!-- </div>
+                <div class="alert alert-primary"> -->
+                  
+                </div>
+
+                <div class="alert alert-danger">
+                  <span><b> Product Discount : </b> </span>
+                  <span><b> {{cart_details.productDiscount}} </b> </span>
+                  <br>
+                  <span><b> Product Quantity   </b> </span>
+                  <span><b> {{cart_details.product_Quantitiy}} </b> </span>
+                  <br>
+                  <span><b> Product Quantity Type :  </b> </span>
+                  <span><b> {{cart_details.product_Quantity_Type}} </b> </span>
+                  <br>
+                  <span><b> Product Out of Stock</b> </span>
+                  <span><b> {{cart_details.product_Out_Of_Stock}} </b> </span>
+                </div>
+
+                <div class="alert alert-success">
+                  <span><b> S P:  </b> </span>
+                  <span><b> {{ cart_details.product_SP }} </b> </span>
+                  <br>
+                  <span><b> Sub Total:  </b> </span>
+                  <span><b> {{ cart_details.sub_Total }} </b> </span>
+                  <br>
+                  <span><b> Total MRP :  </b> </span>
+                  <span><b> {{cart_details.product_MRP}} </b> </span>
+                  <br>
+                  <span><b> Sub Total :  </b> </span>
+                  <span><b> {{cart_details.subtotal}} </b> </span>
+                </div>
+                <div class="alert alert-info">
+                    <span>
+                        {% for im in cart_details.product_Image_Url %}
+                      {% if im != "" %}
+                      {% if forloop.counter == 1 %}
+                      <img src="{{im}}" width="100px" height="100px" style="margin-bottom: 10px; margin-right: 10px;"> 
+                      {% endif %}
+                      {% endif %}
+                      {% endfor %}
+                    </span>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      </div>
+
+
+
+{% endblock %}

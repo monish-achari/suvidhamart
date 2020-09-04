@@ -1,0 +1,14 @@
+curl -X POST -H "Authorization: key=AAAAXvWZFpA:APA91bG7d5zKiFIxtN43x9209fUsT5ff5ypokRBF6Xj8xYB3f_Z2R6DN8PI7xHmN1OsHdukGXZBRUObjkvtHLVy93sALxfHhHKM4UCMHwzNuoj7NgyyU1Tx6phVAD9PdzJPGvJad2bAS" -H "Content-Type: application/json"    -d '{
+  "data": {
+    "notification": {
+        "title": "FCM Message",
+        "body": "This is an FCM Message",
+        "icon": "/ab-logo.png",
+    }
+  },
+  "to": "USER_TOKEN"
+}' https://fcm.googleapis.com/fcm/send
+
+
+"fwXpH8OfTCmz8eTk0pOqJO:APA91bFYexTTNEVkBP0qGrMveWlsN0gyfk85tHEd3uZMOM9biIkuahkk8YM3eUfDSSObP7aZTM0ydKrvwDgxGh5EMVvoYONNpxZmcAuAY348hrXoZU52nDKHlRMNP6ab9i5Vm3c6wjGr"
+

@@ -1,0 +1,242 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+<body onload="sortTable()">
+ <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> {% if val_type %}Orders List{% else %}Delivered Orders List{% endif %}
+<!--                   <a class="waves-effect waves-light btn" href="/offer/add/">Add Offer</a>
+ -->                   &nbsp;&nbsp;&nbsp;<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Order Ids.." title="Type in a id" style="margin-left: 406px;">
+</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table" id="myTable">
+                    <thead class=" text-primary">
+                      <th>
+                        Order Date
+                      </th>
+                      <th>
+                        Delivery Slot
+                      </th>
+                      <th>
+                        Order ID 
+                      </th>
+                      <th>
+                        Total Amount 
+                      </th>
+                      <th>
+                        Sub Amount 
+                      </th>
+                      {% if val_type == "cancelled" %}
+                      <th>
+                        Reason for Cancellation
+                      </th>
+                      {% endif %}
+                      <th>
+                        Status 
+                      </th>
+                      <th class="text-right">
+                        Details
+                      </th>
+                    </thead>
+                    <tbody>
+                      {% for key,val in dataval.items  %}
+                      {% for key_n,val_n in val.items  %}
+                      {% if val_type == "history" %}
+                      {% if val_n.orderStatus != "Delivered" and  val_n.orderStatus != "Order Delivered" and val_n.orderStatus != "Order Cancelled"  and val_n.orderStatus != "Cancelled"%}
+
+                      <tr>
+                        <!-- <td>
+                            <a href="/offers/edit/{{key}}/">{{val.key}}</a>
+                            <a>{{val.key}}</a>
+                        </td> -->
+                        <td>
+                          {{val_n.orderDate}}
+                        </td>
+                        <td>
+                          {{val_n.orderTimeSlot}}
+                        </td>
+                        <td>
+                          {{val_n.orderId}}
+                        </td>
+                        <td>
+                          {{val_n.totalMrp}}
+                        </td>
+                        <td>
+                          {{val_n.subtotal}}
+                        </td>
+                      <td><b>
+                        {{val_n.orderStatus}}
+                      </b></td>
+
+                        <td class="text-right">
+                          <!--  href="/delivered/{{key}}/{{val.key}}/ -->
+                          <!-- <a class="waves-effect waves-light btn" href="/delivered/{{key}}/{{val.key}}/ -->
+                            <!-- onclick="return confirm('confirm to deleivery the product!');" -->
+                        {% if val_type %}<a class="waves-effect waves-light btn" href="/order/details/{{key}}/{{key_n}}/" >View Details</a>{% else %}<a class="waves-effect waves-light btn" href="/order/details/{{key}}/{{val.key}}/?delivered=true">View Delivered Details</a>{% endif %}
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% endif %}
+
+                      {% if val_type == "delivered" %}
+                      {% if val_n.orderStatus == "Delivered" or val_n.orderStatus == "Order Delivered" %}
+                      <tr>
+                        <!-- <td>
+                            <a href="/offers/edit/{{key}}/">{{val.key}}</a>
+                            <a>{{val.key}}</a>
+                        </td> -->
+                        <td>
+                          {{val_n.orderDate}}
+                        </td>
+                        <td>
+                          {{val_n.orderTimeSlot}}
+                        </td>
+                        <td>
+                          {{val_n.orderId}}
+                        </td>
+                        <td>
+                          {{val_n.totalMrp}}
+                        </td>
+                        <td>
+                          {{val_n.subtotal}}
+                        </td>
+                      <td><b>
+                        {{val_n.orderStatus}}
+                      </b></td>
+
+                        <td class="text-right">
+                          <!--  href="/delivered/{{key}}/{{val.key}}/ -->
+                          <!-- <a class="waves-effect waves-light btn" href="/delivered/{{key}}/{{val.key}}/ -->
+                            <!-- onclick="return confirm('confirm to deleivery the product!');" -->
+                            {% if val_type == "history" %}
+                              <a class="waves-effect waves-light btn" href="/order/details/{{key}}/{{key_n}}/" >View Details</a>
+                            {% else %}
+                            <a class="waves-effect waves-light btn" href="/order/details/{{key}}/{{key_n}}/?delivered=true">View Delivered Details</a>{% endif %}
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% endif %}
+
+                      {% if val_type == "cancelled" %}
+                      {% if val_n.orderStatus == "cancelled" or val_n.orderStatus == "Order Cancelled" %}
+                      <tr>
+                        <!-- <td>
+                            <a href="/offers/edit/{{key}}/">{{val.key}}</a>
+                            <a>{{val.key}}</a>
+                        </td> -->
+                        <td>
+                          {{val_n.orderDate}}
+                        </td>
+                        <td>
+                          {{val_n.orderTimeSlot}}
+                        </td>
+                        <td>
+                          {{val_n.orderId}}
+                        </td>
+                        <td>
+                          {{val_n.totalMrp}}
+                        </td>
+                        <td>
+                          {{val_n.subtotal}}
+                        </td>
+                        {% if val_type == "cancelled" %}
+                        <td>
+                          {{val_n.reasonForCancellation }}
+                        </td>
+                        {% endif %}
+                      <td><b>
+                        {{val_n.orderStatus}}
+                      </b></td>
+
+                        <td class="text-right">
+                          <!--  href="/delivered/{{key}}/{{val.key}}/ -->
+                          <!-- <a class="waves-effect waves-light btn" href="/delivered/{{key}}/{{val.key}}/ -->
+                            <!-- onclick="return confirm('confirm to deleivery the product!');" -->
+                            {% if val_type == "history" %}
+                              <a class="waves-effect waves-light btn" href="/order/details/{{key}}/{{key_n}}/" >View Details</a>
+                            {% else %}
+                            <a class="waves-effect waves-light btn" href="/order/details/{{key}}/{{key_n}}/?delivered=true">View Delivered Details</a>{% endif %}
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% endif %}
+
+                      {% endfor %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+<script>
+  document.getElementById("myTable").addEventListener("load", sortTable);
+        function sortTable() {
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById("myTable");
+          switching = true;
+          /*Make a loop that will continue until
+          no switching has been done:*/
+          while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+              //start by saying there should be no switching:
+              shouldSwitch = false;
+              /*Get the two elements you want to compare,
+              one from current row and one from the next:*/
+              x = rows[i].getElementsByTagName("TD")[0];
+              y = rows[i + 1].getElementsByTagName("TD")[0];
+              //check if the two rows should switch place:
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            }
+            if (shouldSwitch) {
+              /*If a switch has been marked, make the switch
+              and mark that a switch has been done:*/
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+          }
+        }
+</script>
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+  </script>
+{% endblock %}

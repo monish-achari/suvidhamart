@@ -1,0 +1,219 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+<div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Edit Product</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST">
+                 {% csrf_token %} 
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="product_name" value="{{product_details.Product_Name}}"  >
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Mrp</label>
+                        <input type="text" class="form-control" name="product_mrp" value="{{product_details.Product_MRP}}"  >
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product search keyword</label>
+                        <input type="text" class="form-control" name="keyword" value="{{product_details.keywords}}"  >
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>SP</label>
+                        <input type="text" class="form-control" name="product_sp" value="{{product_details.Product_SP}}"  >
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Delivery Charge</label>
+                        <input type="text" class="form-control" name="deliverycharge" placeholder="delivery charge" value="{{product_details.DeliveryCharge}}">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product Quantity </label>
+                        <input type="text" class="form-control" name="product_quatity_type" value="{{product_details.Product_Quantity_Type}}">
+                      </div>
+                    </div>
+
+<!-- Stock -->
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Stock {{product_details.Product_Out_Of_Stock}}</label>
+                        <select name="product_stock" class="form-control">
+                          {% if product_details.Product_Out_Of_Stock == "true" %}
+                            <option value="true" selected>out of stock</option>
+                            <option value="false" >stock is there</option>
+                          {% else %}
+                            <option value="true">out of stock</option>
+                            <option value="false" selected>stock is there</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+<!--  -->
+                    <!-- extra new columns -->
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Deals Of the day</label>
+                        <select name="dofd" class="form-control">
+                          {% if product_details.DealsOftheday == "true" %}
+                            <option value="true" selected>True</option>
+                            <option value="false" >False</option>
+                          {% else %}
+                            <option value="true">True</option>
+                            <option value="false" selected>False</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Recommended Essentials </label>
+                        <select name="recess" class="form-control">
+                          {% if product_details.RecommendedEssentials == "true" %}
+                            <option value="true" selected>True</option>
+                            <option value="false" >False</option>
+                          {% else %}
+                            <option value="true">True</option>
+                            <option value="false" selected>False</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Daily Essentials </label>
+                        <select name="de" class="form-control">
+                          {% if product_details.DailyEssentials == "true" %}
+                            <option value="true" selected>True</option>
+                            <option value="false" >False</option>
+                          {% else %}
+                            <option value="true">True</option>
+                            <option value="false" selected>False</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <!--  -->
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product Stock Quantity</label>
+                        <input type="text" class="form-control" name="product_stock_quatity" value="{{product_details.Product_Quantitiy}}"  >
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product Sub Category</label>
+                        <select name="product_subcategory_id" class="form-control">
+                            {% for key,val in all_subcategories.items  %}
+                             {% if product_details.Product_Sub_Cat_Id == key %}
+                <option value="{{product_details.Product_Sub_Cat_Id}}" selected>{{val.Sub_Cat_Name}}</option>{% endif%}
+                          <option value="{{key}}">{{val.Sub_Cat_Name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+					</div>
+					
+					<div class="col-md-6 px-1">
+						<div class="form-group">
+						  <label>Product Grand Category</label>
+						  <select name="product_grandcategory_id" class="form-control">
+							  {% for key,val in all_grandcategories.items  %}
+							   {% if product_details.Product_Grand_Cat_Id == key %}
+				  		<option value="{{product_details.Product_Grand_Cat_Id}}" selected>{{val.Grand_Cat_Name}}</option>{% endif%}
+							<option value="{{key}}">{{val.Grand_Cat_Name}}</option>
+							{% endfor %}
+						  </select>
+						</div>
+					  </div>
+                  <div class="col-md-6 px-1">
+                    <div class="form-group">
+                      <label>Description </label>
+                      <textarea type="text" class="form-control" name="product_details"  value="{{product_details.Product_Details}}"   >{{product_details.Product_Details}}</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-1">
+                    <div class="form-group">
+                      <label>More Info </label>
+                      <textarea type="text" class="form-control" name="moreinfo"  value="{{product_details.MoreInfo}}" >{{product_details.MoreInfo}}</textarea>
+                    </div>
+                  </div>
+                <div class="col-md-6 px-1">
+                  <label >Image</label>
+                  {% for item in product_details.Product_Image_Url %}
+                        <img src="{{item}}" alt="{{item}}" height="200px;" width="200px;">
+                       {% endfor %} 
+                       <input type="file" class="form-control" name="files[]" id="files">
+                       <input type="hidden" name="url" id="url">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage()">Upload</button><br><br>
+                </div>
+                <div class="col-md-6 px-1">
+                  <label >Image</label>
+                       <input type="file" class="form-control" name="files2[]" id="files2">
+                       <input type="hidden" name="url2" id="url2">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage2()">Upload</button><br><br>
+                  </div>
+
+                  <!-- 3rd img -->
+                  <div class="col-md-6 px-1">
+                  <label >Image</label>
+                       <input type="file" class="form-control" name="files3[]" id="files3">
+                       <input type="hidden" name="url3" id="url3">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage3()">Upload</button><br><br>
+                  </div>
+                  <!-- end 3rd -->
+                  <!-- 4th image -->
+                   <div class="col-md-6 px-1">
+                  <label >Image</label>
+                       <input type="file" class="form-control" name="files4[]" id="files4">
+                       <input type="hidden" name="url4" id="url4">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage4()">Upload</button><br><br>
+                  </div>
+                  <!-- end 4th -->
+                    <div class="col-md-6 pl-1"> 
+                      <div class="form-group">
+                        <input type="submit" class="form-control" >
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+
+{% endblock %}

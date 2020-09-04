@@ -1,0 +1,290 @@
+<!--
+
+=========================================================
+* Now UI Dashboard - v1.5.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/now-ui-dashboard
+* Copyright 2019 Creative Tim (http://www.creative-tim.com)
+
+* Designed by www.invisionapp.com Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+-->
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    SHOP
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- CSS Files -->
+  <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="/static/assets/custom/customjs.js"></script>
+  <link href="/static/assets/custom/style.css" rel="stylesheet" />
+  <link href="/static/assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="/static/assets/demo/demo.css" rel="stylesheet" />
+</head>
+
+<body class="user-profile">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="green">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+      <div class="logo">
+        <a href="/" class="simple-text logo-mini">
+          
+        </a>
+        <a href="/" class="simple-text logo-normal">
+          <li class="active">
+          Essentials
+        </li>
+        </a>
+      </div>
+      <div class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav">
+          <li> 
+            <a href="/dashboard/">
+              <i class="now-ui-icons design_app"></i>
+              <p>USERS</p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav">
+            <li>
+              <a href="/category/list/">
+                <i class="now-ui-icons design_app"></i>
+                <p>Category</p>
+              </a>
+            </li>
+        </ul>
+        <ul class="nav">
+            <li>
+              <a href="/sub-category/list/">
+                <i class="now-ui-icons design_app"></i>
+                <p>Sub category</p>
+              </a>
+            </li>
+        </ul>
+        <ul class="nav">
+            <li>
+              <a href="/grand-category/list/">
+                <i class="now-ui-icons design_app"></i>
+                <p>Grand sub category</p>
+              </a>
+            </li>
+        </ul>
+        <ul class="nav">
+            <li>
+              <a href="/prodcut/list/">
+                <i class="now-ui-icons design_app"></i>
+                <p>Product</p>
+              </a>
+            </li>
+        </ul>
+        <ul class="nav">
+            <li>
+              <a href="/offers/list/">
+                <i class="now-ui-icons design_app"></i>
+                <p>Offers</p>
+              </a>
+            </li>
+        </ul>
+        <ul class="nav">
+          <li>
+            <a href="/offers2/list/">
+              <i class="now-ui-icons design_app"></i>
+              <p>Offers 2</p>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="nav">
+          <li>
+            <a href="/cart/list/">
+              <i class="now-ui-icons design_app"></i>
+              <p>Cart Lists</p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav">
+            <li>
+              <a href="/order/history/">
+                <i class="now-ui-icons design_app"></i>
+                <p>Order History</p>
+              </a>
+            </li>
+        </ul>
+        <ul class="nav">
+            <li>
+              <a href="/order/delivered/">
+                <i class="now-ui-icons design_app"></i>
+                <p>Delivered History</p>
+              </a>
+            </li>
+        </ul>
+        <ul class="nav">
+          <li>
+            <a href="/order/cancelled/">
+              <i class="now-ui-icons design_app"></i>
+              <p>Order Cancelled</p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav">
+            <li>
+              <a href="/active/location/">
+                <i class="now-ui-icons design_app"></i>
+                <p>Active Locations</p>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+      {% endblock %}
+      {% block midpart %}
+
+      {% endblock %}
+{% block footer %}
+      <footer class="footer">
+        
+      </footer>
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="/static/assets/js/core/jquery.min.js"></script>
+  <script src="/static/assets/js/core/popper.min.js"></script>
+  <script src="/static/assets/js/core/bootstrap.min.js"></script>
+  <script src="/static/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+  <!-- Chart JS -->
+  <script src="/static/assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="/static/assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/static/assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+  <script src="/static/assets/demo/demo.js"></script>
+{% block extracode %}
+
+{% endblock %}
+</body>
+{% endblock %}
+{% block scripts%}
+<!-- script for file upload -->
+
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  
+
+   <script>
+      var config = {
+    apiKey: "AIzaSyAJKvTG7YQevLeHsJzC9gYKXiVAD4bofsQ",
+    authDomain: "essentials-e7555.firebaseapp.com",
+    databaseURL: "https://essentials-e7555.firebaseio.com",
+    projectId: "essentials-e7555",
+    storageBucket: "essentials-e7555.appspot.com",
+    messagingSenderId: "407847376528",
+    appId: "1:407847376528:web:43925e60a64b68a6c0aa15",
+    measurementId: "G-1XPPMM586R"
+      
+      };
+      
+     firebase.initializeApp(config);
+      // Get a reference to the storage service, which is used to create references in your storage bucket
+      function uploadimage(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+
+
+// SECOND
+    function uploadimage2(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files2").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url2").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+// THIRD
+      function uploadimage3(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files3").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url3").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+// FOURTH
+      function uploadimage4(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files4").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url4").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+</script>
+
+{% endblock %}
+{% block endpart %}
+</html>
+{% endblock %}

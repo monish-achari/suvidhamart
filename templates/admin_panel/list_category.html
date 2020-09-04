@@ -1,0 +1,61 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+ <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+     
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Category Lists
+                  <a class="waves-effect waves-light btn" href="/category/create/">Add Category</a>
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Description
+                      </th>
+                      <th>
+                        image
+                      </th>
+                      <th class="text-right">
+                        delete
+                      </th>
+                    </thead>
+                    <tbody>
+                      {% for key,val in all_categories.items  %}
+                      <tr>
+                        <td>
+                            <a href="/category/edit/{{key}}/">{{val.Cat_Name}}</a>
+                        </td>
+                        <td>
+                          {{val.Cat_Details}}
+                        </td>
+                        <td>
+                        <img src="{{val.Cat_Image_Url}}" alt="{{val.Cat_Name}}" height="20px" width="20px">
+                        </td>
+                        <td class="text-right">
+                        <a class="waves-effect waves-light btn" href="/delete/{{key}}/category/categorylist/">delete</a>
+                        </td>
+                      </tr>                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+{% endblock %} 

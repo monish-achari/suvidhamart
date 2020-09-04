@@ -1,0 +1,209 @@
+
+ {% extends "admin_panel/base.html" %}
+{% block midpart %}
+
+
+<div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Add sub category</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST">
+                 {% csrf_token %} 
+                  <div class="row">
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="name" required="true">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Description </label>
+                        <input type="text" class="form-control" name="description" required="true" placeholder="description">
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Offer Code </label>
+                        <input type="text" class="form-control" name="offer"  required="true">
+                      </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Category</label>
+
+                         <select name="category_id" class="form-control">
+                            {% for key,val in all_categories.items  %}
+                          <option value="{{key}}">{{val.Cat_Name}}</option>
+                          {% endfor %}
+                        </select> 
+                        <!-- <input type="text" class="form-control" name="mobile" placeholder="mobile" required="true"> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 px-1">
+                  <label >Image</label>
+                       <input type="file" class="form-control" name="files[]" id="files">
+                       <input type="hidden" name="url" id="url">
+                     </br>
+                  </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage()">Upload</button><br><br>
+                </div>
+                  <div class="row">
+                    
+                    <div class="col-md-6 pl-1"> 
+                      <div class="form-group">
+                        <input type="submit" class="form-control" >
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <footer class="footer">
+        
+      </footer>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+### product update
+
+<!-- script for file upload -->
+
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  
+   <script>
+      var config = {
+      
+      // apiKey: "AIzaSyB0Il0NLQPxxDyMgoE0fOMd4pYUkbkZVvI",
+      
+      // authDomain: "cpanel-5e873.firebaseapp.com",
+      
+      // databaseURL: "https://cpanel-5e873.firebaseio.com",
+      
+      // storageBucket: "cpanel-5e873.appspot.com",
+      
+      // messagingSenderId: "579985583952"
+      apiKey: "AIzaSyAPTy6vrUp4PU7H205fZFkUEHs9LsoSDus",
+      authDomain: "citric-proxy-241616.firebaseapp.com",
+      databaseURL: "https://citric-proxy-241616.firebaseio.com",
+      projectId: "citric-proxy-241616",
+      storageBucket: "citric-proxy-241616.appspot.com",
+      messagingSenderId: "1000975911785",
+      appId: "1:1000975911785:web:a4a4007840f5501308cbf8",
+      measurementId: "G-138FDLBEBE"
+      
+      };
+      
+     firebase.initializeApp(config);
+      // Get a reference to the storage service, which is used to create references in your storage bucket
+      function uploadimage(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+
+// SECOND
+    function uploadimage2(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files2").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url2").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+// THIRD
+      function uploadimage3(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files3").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url3").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+// FOURTH
+      function uploadimage4(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files4").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url4").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+   </script>
+
+<!-- end file upload -->

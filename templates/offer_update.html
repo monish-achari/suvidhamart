@@ -1,0 +1,79 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+ <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Edit Offer</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST">
+                 {% csrf_token %} 
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" value="{{offer_details.Offer_Name}}" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Mrp</label>
+                        <input type="text" class="form-control" name="product_mrp" value="{{product_details.product_mrp}}" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>SP</label>
+                        <input type="text" class="form-control" name="product_sp" value="{{product_details.product_sp}}" required="true">
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product Sub Category</label>
+                        <select name="product_subcategory_id" class="form-control">
+                            {% for key,val in all_subcategories.items  %}
+                             {% if product_details.product_subcategory_id == key %}
+                <option value="{{product_details.product_subcategory_id}}" selected>{{val.name}}</option>{% endif%}
+                          <option value="{{key}}">{{val.name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Description </label>
+                        <input type="text" class="form-control" name="product_details"  value="{{product_details.product_details}}"  required="true">
+                      </div>
+                    </div>
+                <div class="col-md-6 px-1">
+                  <label >Image</label>
+                        <img src="{{product_details.Offers_Image_Url}}" alt="{{product_details.Offers_Image_Url}}" height="200px;" width="200px;">
+                       <input type="file" class="form-control" name="files[]" id="files">
+                       <input type="hidden" name="url" id="url">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage()">Upload</button><br><br>
+                </div>
+                    <div class="col-md-6 pl-1"> 
+                      <div class="form-group">
+                        <input type="submit" class="form-control" >
+                      </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+   <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+   <script>
+      var config = {
+      
+      // apiKey: "AIzaSyB0Il0NLQPxxDyMgoE0fOMd4pYUkbkZVvI",
+      
+      // authDomain: "cpanel-5e873.firebaseapp.com",
+      
+      // databaseURL: "https://cpanel-5e873.firebaseio.com",
+      
+      // storageBucket: "cpanel-5e873.appspot.com",
+      
+      // messagingSenderId: "579985583952"
+      apiKey: "AIzaSyAPTy6vrUp4PU7H205fZFkUEHs9LsoSDus",
+      authDomain: "citric-proxy-241616.firebaseapp.com",
+      databaseURL: "https://citric-proxy-241616.firebaseio.com",
+      projectId: "citric-proxy-241616",
+      storageBucket: "citric-proxy-241616.appspot.com",
+      messagingSenderId: "1000975911785",
+      appId: "1:1000975911785:web:a4a4007840f5501308cbf8",
+      measurementId: "G-138FDLBEBE"
+      
+      };
+      
+      firebase.initializeApp(config);
+      // Get a reference to the storage service, which is used to create references in your storage bucket
+      function uploadimage(){
+      var storage = firebase.storage();
+      var file = document.getElementById("files").files[0];
+      var storageRef = storage.ref();
+      var thisref = storageRef.child(file.name).put(file);
+      thisref.on('state_changed',function(snapshot){
+      console.log("file uplaoded succesfully");
+      },
+      function(error) {
+      },
+      function() {
+      // Upload completed successfully, now we can get the download URL      
+      var downloadURL = thisref.snapshot.downloadURL;
+      console.log("got url");
+      document.getElementById("url").value = downloadURL;
+      alert("file uploaded successfully");
+      });
+      }
+   </script>

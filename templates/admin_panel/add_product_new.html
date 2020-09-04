@@ -1,0 +1,209 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+<div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Add Product</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST">
+                 {% csrf_token %} 
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="product_name" placeholder="name" required="true">
+                      </div>
+                    </div>
+					<!--  -->
+					<div class="col-md-6 px-1">
+					<div class="form-group">
+                        <label> Deals Of the day </label>
+                      <select name="dofd" class="form-control">
+                          <option value="false">False</option>
+                          <option value="true">True</option>
+                        </select> 
+					  </div>
+					</div>
+					<div class="col-md-6 px-1">
+						<div class="form-group">
+							<label> Recommended Essentials </label>
+						  <select name="recess" class="form-control">
+							  <option value="false">False</option>
+							  <option value="true">True</option>
+							</select> 
+						  </div>
+						</div>
+						<div class="col-md-6 px-1">
+							<div class="form-group">
+								<label> Daily Essentials </label>
+							  <select name="de" class="form-control">
+								  <option value="false">False</option>
+								  <option value="true">True</option>
+								</select> 
+							  </div>
+							</div>
+                    <!--  -->
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Mrp</label>
+                        <input type="text" class="form-control" name="product_mrp" placeholder="product mrp" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>SP</label>
+                        <input type="text" class="form-control" name="product_sp" placeholder="product sp" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product search keyword</label>
+                        <input type="text" class="form-control" name="keyword" placeholder="search keyword" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product Quantity </label>
+                        <input type="text" class="form-control" name="product_quatity_type" placeholder="product quantity" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product Stock Quantity</label>
+                        <input type="text" class="form-control" name="product_stock_quatity" placeholder="stock quantity" required="true">
+                      </div>
+                  </div>
+                  <div class="col-md-6 px-1">
+                    <div class="form-group">
+                      <label>Delivery Charge</label>
+                      <input type="text" class="form-control" name="deliverycharge" placeholder="delivery charge">
+                    </div>
+                </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product Sub Category</label>
+                        <select name="product_subcategory_id" class="form-control">
+                            {% for key,val in all_subcategories.items  %}
+                          <option value="{{key}}">{{val.Sub_Cat_Name}}</option>
+                          {% endfor %}
+                        </select>
+                        <!-- <input type="text" class="form-control" name="name" placeholder="sub" required="true"> -->
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product Grand Category</label>
+                        <select name="product_grandcategory_id" class="form-control">
+                            {% for key,val in all_grandcategories.items  %}
+                          <option value="{{key}}">{{val.Grand_Cat_Name}}</option>
+                          {% endfor %}
+                        </select>
+                        <!-- <input type="text" class="form-control" name="name" placeholder="sub" required="true"> -->
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Description </label>
+                        <textarea type="text" class="form-control" name="product_details"  placeholder="details"  required="true"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>More Info </label>
+                        <textarea type="text" class="form-control" name="moreinfo"  placeholder="details"></textarea>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product offer </label>
+                        <select name="product_offer" class="form-control">
+                            {% for key,val in all_offers.items  %}
+                          <option value="{{key}}">{{val.Offer_Name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product sold </label>
+                        <input type="text" class="form-control" name="product_sold"  placeholder="product sold" >
+                      </div>
+                    </div> -->
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label> Stock </label>
+                      <select name="out_of_stock" class="form-control">
+                          <option value="false">stock is there</option>
+                          <option value="true">out of stock</option>
+                        </select> 
+                      </div>
+                    </div>
+                <!-- url image start 1 -->
+                <div class="col-md-6 px-1">
+                  <label >Image</label>
+                       <input type="file" class="form-control" name="files[]" id="files">
+                       <input type="hidden" name="url" id="url">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage()">Upload</button><br><br>
+                </div>
+
+                <!-- url2 image start 2-->
+
+                <div class="col-md-6 px-1">
+                  <label >Image</label>
+                       <input type="file" class="form-control" name="files2[]" id="files2">
+                       <input type="hidden" name="url2" id="url2">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage2()">Upload</button><br><br>
+                </div>
+                <!-- url2 image start 3-->
+
+                <div class="col-md-6 px-1">
+                  <label >Image</label>
+                       <input type="file" class="form-control" name="files3[]" id="files3">
+                       <input type="hidden" name="url3" id="url3">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage3()">Upload</button><br><br>
+                </div>
+                <!-- url2 image start 4-->
+
+                <div class="col-md-6 px-1">
+                  <label >Image</label>
+                       <input type="file" class="form-control" name="files4[]" id="files4">
+                       <input type="hidden" name="url4" id="url4">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                  <button type="button" onclick="uploadimage4()">Upload</button><br><br>
+                </div>
+                  <div class="row">
+                    <div class="col-md-6 pl-1"> 
+                      <div class="form-group">
+                        <input type="submit" class="form-control" >
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+<div class="main-panel" id="main-panel">
+    <!-- Navbar -->
+    
+    <!-- End Navbar -->
+    <div class="panel-header panel-header-sm">
+    </div>
+<div class="content">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="title">User Details</h5>
+          </div>
+          <div class="card-body">
+            <div class="alert alert-primary">
+                <span><b> Wallet balance:  </b> </span>
+                <span><b> {{ return_data.Wallet_amount }} </b> </span>
+            </div>
+            <div class="alert alert-info">
+              {% for key,val in return_data.address.items  %}
+              <span><b> {{val.addressNickName }}</b><br> 
+                <b>House Number : {{val.houseNo }}</b><br>
+                <b>Society Name : {{val.societyName }}</b><br>
+                <b>Landmark : {{val.landmark }}</b><br>
+                <b>Pincode : {{val.pincode }}</b><br>
+                <b>Phone : {{val.mobileNumber }}</b><br>
+                </span>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-user">
+          <div class="image">
+            <img src="../assets/img/bg5.jpg" alt=" ">
+          </div>
+          <div class="card-body">
+            <div class="author">
+              <a href="#">
+                <img class="avatar border-gray" src="{{return_data.userImageUrl}}" alt="...">
+                <h5 class="title">{{return_data.Name}}</h5>
+              </a>
+              <p class="description">
+                <b>{{return_data.Email}} </b>
+              </p>
+            </div>
+            <p class="description text-center">
+                "Do what you can,<br>
+                with what you have, <br>
+                where you are.”
+            </p>
+          </div>
+          <hr>
+          <div class="button-container">
+            <div class="col-md-12">
+                    <button class="btn btn-primary btn-block" onclick="nowuiDashboard.showNotification('bottom','right','User has been deleted...!');window.setTimeout(function() {window.location.href = '/delete/{{uid}}/user/dashboard/';},1000);">
+                      Delete User
+                      </button>
+                    <button class="btn btn-primary btn-block" onclick="nowuiDashboard.showNotification('bottom','right','Please update user here...!');window.setTimeout(function() {window.location.href = '/user/edit/{{uid}}/';},1000);">
+                      Edit User 
+                    </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+{% endblock %}

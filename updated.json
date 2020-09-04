@@ -1,0 +1,74 @@
+{
+  "Product" : {
+    "-ODjYeuD8hfQ4xC4NNzv" : {
+      "product_category_id" : "LxjYeuD8hfQ4xC4NNz",
+      "product_details" : "sdasdsadsa",
+      "product_image_url" : "https://firebasestorage.googleapis.com/v0/b/ringtoneapp-4fcae1.appspot.com/o/Ringtone%2F1578124577442.mp3?alt=media&token=c643ca0d-78cb-41bc-a2fe-523b7570060c",
+      "product_mrp" : "Duniya",
+      "product_name" : "Duniya",
+      "product_quatity_type" : "20/30/40",
+      "product_sp" : "20/30/40",
+      "product_stock_quatity" : ""
+    },
+    "-OxjYeuD8hfQ4xC4NNzv" : {
+      "product_category_id" : "LxjYeuD8hfQ4xC4NNz",
+      "product_details" : "sdasdsadsa",
+      "product_image_url" : "https://firebasestorage.googleapis.com/v0/b/ringtoneapp-4fcae1.appspot.com/o/Ringtone%2F1578124577442.mp3?alt=media&token=c643ca0d-78cb-41bc-a2fe-523b7570060c",
+      "product_mrp" : "Duniya",
+      "product_name" : "Duniya",
+      "product_quatity_type" : "20/30/40",
+      "product_sp" : "20/30/40",
+      "product_stock_quatity" : ""
+    }
+  },
+  "ProductCategory" : {
+    "-LxjYeuD8hfQ4xC4NNz" : {
+      "description" : "dasdsadasdadas",
+      "imageurl" : "https://firebasestorage.googleapis.com/v0/b/ringtoneapp-4fcae1.appspot.com/o/Ringtone%2F1578124577442.mp3?alt=media&token=c643ca0d-78cb-41bc-a2fe-523b7570060c",
+      "name" : "Duniya",
+      "uploadID" : "-LxjYeuD8hfQ4xC4NNz"
+    },
+    "-LxjYeuD8hfQ4xC4NNzv" : {
+      "description" : "dasdsadasdadas",
+      "imageurl" : "https://firebasestorage.googleapis.com/v0/b/ringtoneapp-4fcae1.appspot.com/o/Ringtone%2F1578124577442.mp3?alt=media&token=c643ca0d-78cb-41bc-a2fe-523b7570060c",
+      "name" : "Duniya",
+      "uploadID" : "-LxjYeuD8hfQ4xC4NNzv"
+    },
+    "-Lzm4nofpqSNxYmdfEvd" : {
+      "description" : "vaasda@dsad.das",
+      "imageurl" : "https://firebasestorage.googleapis.com/v0/b/citric-proxy-241616.appspot.com/o/Screenshot%20from%202019-12-07%2022-02-19.png?alt=media&token=abd22989-64ec-4a6d-ba04-373f38692f9c",
+      "name" : "cat"
+    }
+  },
+  "Users" : {
+    "+917004725314" : {
+      "mobile" : "test@gmail.com",
+      "userEmail" : "test@gmail.com",
+      "userId" : "+917004725314",
+      "userName" : "test"
+    },
+    "+917892534152" : {
+      "mobile" : "test1@gmail.com",
+      "userEmail" : "test1@gmail.com",
+      "userId" : "+917892534152",
+      "userName" : "test1"
+    },
+    "-LzlzSDme62zPzlwzVQu" : {
+      "userEmail" : "apple@gmail.com",
+      "userId" : "123456789",
+      "userName" : "mango"
+    }
+  },
+  "ProductSubCategory":{
+    "key1":{
+      "name":"test1",
+      "description":"ttererere",
+      "category_id":"LxjYeuD8hfQ4xC4NNz"
+    },
+    "key2":{
+      "name":"test12",
+      "description":"t2tererere",
+      "category_id":"Lx2jYeuD8hfQ4xC4NNz"
+    }
+  }
+}

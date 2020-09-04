@@ -1,0 +1,73 @@
+<form method="POST">
+    {% csrf_token %}
+<input name="username" placeholder="username"><br>
+<input name="email" placeholder="email"><br>
+<input name="mobile" placeholder="mobile"><br>
+<input type="submit"></br>
+
+</form>
+
+
+
+<form method="POST">
+        {% csrf_token %}
+    <input name="username" value="{{user_details.userName}}"><br>
+    <input name="email" value="{{user_details.userEmail}}"><br>
+    <input name="mobile" value="{{user_details.userId}}"><br>
+    <input type="submit"></br>
+</form>
+
+<!-- category list -->
+
+<table>
+   <thead>
+      <th>
+         Name
+      </th>
+      <th>
+         Description
+      </th>
+      <th>
+         image
+      </th>
+   </thead>
+   <tbody>
+      {% for key,val in all_categories.items  %}
+      <tr>
+         <td>
+            <a href="/user/edit/{{key}}/">{{val.name}}</a>
+         </td>
+         <td>
+            {{val.description}}
+         </td>
+         <td class="text-right">
+            <img src="{{val.imageurl}}" alt="{{val.name}}" height="20px" width="20px">
+         </td>
+      </tr>
+      {% endfor %}
+   </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
