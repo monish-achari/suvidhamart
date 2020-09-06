@@ -1,0 +1,62 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+ <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+     
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Offers 4 Lists
+                  <a class="waves-effect waves-light btn" href="/offer4/add/">Add Offer 4</a>
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Sub category
+                      </th>
+                       <th>
+                        Expire date
+                      </th>
+                      <th class="text-right">
+                        DELETE
+                      </th>
+                    </thead>
+                    <tbody>
+                      {% for key,val in all_offers.items  %}
+                      <tr>
+                        <td>
+                            <a href="/offers4/edit/{{key}}/">{{val.Offer_Name}}</a>
+                        </td>
+                        <td>
+                          {{val.Offer_Details}}
+                        </td>
+                        <td>
+                          {{val.Offer_Expire_Date}}
+                        </td>
+                      
+                        <td class="text-right">
+                        <a class="waves-effect waves-light btn" href="/delete/{{key}}/offer4/offerslist4/">delete</a>
+                        </td>
+                      </tr>                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

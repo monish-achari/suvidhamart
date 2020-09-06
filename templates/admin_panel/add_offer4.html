@@ -1,0 +1,89 @@
+{% extends "admin_panel/base.html" %}
+{% block extracode %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+<script>
+  $(document).ready(function () {
+     $('select').selectize({
+         sortField: 'text'
+     });
+ });
+</script>
+{% endblock %}
+{% block midpart %}
+
+  <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Add Offer 4</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST">
+                 {% csrf_token %} 
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="name" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Details</label>
+                        <input type="text" class="form-control" name="offer_details" placeholder="Details " required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Offer Code</label>
+                        <input type="text" class="form-control" name="offer_code" placeholder="Offer Code" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Expire date</label>
+                        <input type="text" class="form-control" name="expire_date" placeholder="Expire date" required="true">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Product</label>
+                        <select name="subcategory" class="form-control" id="select-state" placeholder="Products..." multiple>
+                            {% for key,val in all_products.items  %}
+                          <option value="{{key}}">{{val.Product_Name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                <div class="col-md-6 px-1">
+                  <label >Image</label>
+                    <input type="file" class="form-control" name="files[]" id="files">
+                       <input type="hidden" name="url" id="url">
+                     </br>
+                </div>
+                 <div class="col-md-6 pl-1"> 
+                 <button type="button" onclick="uploadimage()">Upload</button><br><br>
+                </div>
+                    <div class="col-md-6 pl-1"> 
+                      <div class="form-group">
+                        <input type="submit" class="form-control" >
+                      </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      
+{% endblock %}

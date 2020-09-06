@@ -172,6 +172,33 @@ def list_offers_second(request):
 		all_offers = []
 	return render(request, template_name,locals())
 
+def list_offers_third(request):
+	template_name = 'admin_panel/list_offers3.html'
+	token_id = request.session['uid']
+	try:
+		all_offers = dict(db.child('Offers3').get(token_id).val())
+	except:
+		all_offers = []
+	return render(request, template_name,locals())
+
+def list_offers_fourth(request):
+	template_name = 'admin_panel/list_offers4.html'
+	token_id = request.session['uid']
+	try:
+		all_offers = dict(db.child('Offers4').get(token_id).val())
+	except:
+		all_offers = []
+	return render(request, template_name,locals())
+
+def list_offers_fifth(request):
+	template_name = 'admin_panel/list_offers5.html'
+	token_id = request.session['uid']
+	try:
+		all_offers = dict(db.child('Offers5').get(token_id).val())
+	except:
+		all_offers = []
+	return render(request, template_name,locals())
+
 def create_user_page(request):
 	template_name = 'admin_panel/user_create.html'
 	token_id = request.session['uid']
@@ -311,6 +338,108 @@ def add_offer(request):
 		"""
 			
 		return redirect('offerslist')	
+	return render(request, template_name,locals())
+
+def add_offer_third(request):
+	token_id = request.session['uid']
+	template_name = 'admin_panel/add_offer3.html'
+	# all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
+	all_products = dict(db.child("Product").get(token_id).val())
+	if request.method=='POST':
+		data = request.POST
+		offer_dict = {
+			"Offer_Details":data.get('offer_details'),
+			"Offer_Expire_Date":data.get('expire_date'),
+			"Offer_Name":data.get('name'),
+			"Offer_Code":data.get('offer_code'),
+			"Offers_Image_Url":data.get('url'),
+			# "Sub_Cat_Id":data.get('subcategory')
+			"Prodct_Id":data.getlist('subcategory')
+		}
+		bool_val,key_val = add_data_to_table(db,token_id,offer_dict,"Offers3","Offer_ID","Offer_Created_Date","Offer_Modified_Date")
+		"""
+		offer id in product list 
+		"""
+		for p_id in data.getlist('subcategory'):
+			product_obj = db.child('Product').child(p_id)
+			product_dict = {
+				"Product_Modified_Date":str(dt.datetime.now()),
+				"Product_Offer3_Id":key_val
+				}
+			product_obj.update(product_dict,token_id)
+		"""
+		end product offers 
+		"""
+			
+		return redirect('offerslist3')	
+	return render(request, template_name,locals())
+
+def add_offer_fourth(request):
+	token_id = request.session['uid']
+	template_name = 'admin_panel/add_offer4.html'
+	# all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
+	all_products = dict(db.child("Product").get(token_id).val())
+	if request.method=='POST':
+		data = request.POST
+		offer_dict = {
+			"Offer_Details":data.get('offer_details'),
+			"Offer_Expire_Date":data.get('expire_date'),
+			"Offer_Name":data.get('name'),
+			"Offer_Code":data.get('offer_code'),
+			"Offers_Image_Url":data.get('url'),
+			# "Sub_Cat_Id":data.get('subcategory')
+			"Prodct_Id":data.getlist('subcategory')
+		}
+		bool_val,key_val = add_data_to_table(db,token_id,offer_dict,"Offers4","Offer_ID","Offer_Created_Date","Offer_Modified_Date")
+		"""
+		offer id in product list 
+		"""
+		for p_id in data.getlist('subcategory'):
+			product_obj = db.child('Product').child(p_id)
+			product_dict = {
+				"Product_Modified_Date":str(dt.datetime.now()),
+				"Product_Offer4_Id":key_val
+				}
+			product_obj.update(product_dict,token_id)
+		"""
+		end product offers 
+		"""
+			
+		return redirect('offerslist4')	
+	return render(request, template_name,locals())
+
+def add_offer_fifth(request):
+	token_id = request.session['uid']
+	template_name = 'admin_panel/add_offer5.html'
+	# all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
+	all_products = dict(db.child("Product").get(token_id).val())
+	if request.method=='POST':
+		data = request.POST
+		offer_dict = {
+			"Offer_Details":data.get('offer_details'),
+			"Offer_Expire_Date":data.get('expire_date'),
+			"Offer_Name":data.get('name'),
+			"Offer_Code":data.get('offer_code'),
+			"Offers_Image_Url":data.get('url'),
+			# "Sub_Cat_Id":data.get('subcategory')
+			"Prodct_Id":data.getlist('subcategory')
+		}
+		bool_val,key_val = add_data_to_table(db,token_id,offer_dict,"Offers5","Offer_ID","Offer_Created_Date","Offer_Modified_Date")
+		"""
+		offer id in product list 
+		"""
+		for p_id in data.getlist('subcategory'):
+			product_obj = db.child('Product').child(p_id)
+			product_dict = {
+				"Product_Modified_Date":str(dt.datetime.now()),
+				"Product_Offer5_Id":key_val
+				}
+			product_obj.update(product_dict,token_id)
+		"""
+		end product offers 
+		"""
+			
+		return redirect('offerslist5')	
 	return render(request, template_name,locals())
 
 
@@ -501,6 +630,91 @@ def update_obj_page(request,obj,uid):
 				product_obj.update(product_dict,token_id)
 			return redirect('offerslist')
 
+	elif obj == 'offers3':
+		all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
+		offer_details = dict(db.child("Offers3").child(uid).get(token_id).val())
+		all_products = dict(db.child("Product").get(token_id).val())
+		template_name = 'admin_panel/offer3_update.html'
+		if  request.method == 'POST':
+			offer_obj = db.child('Offers2').child(uid)
+			data = request.POST
+			offer_dict = {
+			"Offer_Modified_Date":str(dt.datetime.now()),
+			"Offer_Details":data.get('offer_details'),
+			"Offer_Expire_Date":data.get('expire_date'),
+			"Offer_Name":data.get('name'),
+			"Offer_Code":data.get('offer_code'),
+			"Offers_Image_Url":data.get('url') if data.get('url') else offer_details.get('Offers_Image_Url'),
+			"Prodct_Id":data.getlist('products'),
+			# "Sub_Cat_Id":data.get('subcategory')
+			}
+			offer_obj.update(offer_dict,token_id)
+			for p_id in data.getlist('products'):
+				product_obj = db.child('Product').child(p_id)
+				product_dict = {
+					"Product_Modified_Date":str(dt.datetime.now()),
+					"Product_Offer3_Id":uid
+					}
+				product_obj.update(product_dict,token_id)
+			return redirect('offerslist3')
+
+	elif obj == 'offers4':
+		all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
+		offer_details = dict(db.child("Offers4").child(uid).get(token_id).val())
+		all_products = dict(db.child("Product").get(token_id).val())
+		template_name = 'admin_panel/offer4_update.html'
+		if  request.method == 'POST':
+			offer_obj = db.child('Offers4').child(uid)
+			data = request.POST
+			offer_dict = {
+			"Offer_Modified_Date":str(dt.datetime.now()),
+			"Offer_Details":data.get('offer_details'),
+			"Offer_Expire_Date":data.get('expire_date'),
+			"Offer_Name":data.get('name'),
+			"Offer_Code":data.get('offer_code'),
+			"Offers_Image_Url":data.get('url') if data.get('url') else offer_details.get('Offers_Image_Url'),
+			"Prodct_Id":data.getlist('products'),
+			# "Sub_Cat_Id":data.get('subcategory')
+			}
+			offer_obj.update(offer_dict,token_id)
+			for p_id in data.getlist('products'):
+				product_obj = db.child('Product').child(p_id)
+				product_dict = {
+					"Product_Modified_Date":str(dt.datetime.now()),
+					"Product_Offer4_Id":uid
+					}
+				product_obj.update(product_dict,token_id)
+			return redirect('offerslist4')
+
+	elif obj == 'offers5':
+		all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
+		offer_details = dict(db.child("Offers5").child(uid).get(token_id).val())
+		all_products = dict(db.child("Product").get(token_id).val())
+		template_name = 'admin_panel/offer5_update.html'
+		if  request.method == 'POST':
+			offer_obj = db.child('Offers5').child(uid)
+			data = request.POST
+			offer_dict = {
+			"Offer_Modified_Date":str(dt.datetime.now()),
+			"Offer_Details":data.get('offer_details'),
+			"Offer_Expire_Date":data.get('expire_date'),
+			"Offer_Name":data.get('name'),
+			"Offer_Code":data.get('offer_code'),
+			"Offers_Image_Url":data.get('url') if data.get('url') else offer_details.get('Offers_Image_Url'),
+			"Prodct_Id":data.getlist('products'),
+			# "Sub_Cat_Id":data.get('subcategory')
+			}
+			offer_obj.update(offer_dict,token_id)
+			for p_id in data.getlist('products'):
+				product_obj = db.child('Product').child(p_id)
+				product_dict = {
+					"Product_Modified_Date":str(dt.datetime.now()),
+					"Product_Offer5_Id":uid
+					}
+				product_obj.update(product_dict,token_id)
+			return redirect('offerslist5')
+
+
 	elif obj == 'offers2':
 		all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
 		offer_details = dict(db.child("Offers2").child(uid).get(token_id).val())
@@ -553,6 +767,15 @@ def delete_obj(request,uid,key,url):
 		offer_obj.remove(token_id)
 	elif key == "offer2":
 		offer_obj = db.child('Offers2').child(uid)
+		offer_obj.remove(token_id)
+	elif key == "offer3":
+		offer_obj = db.child('Offers3').child(uid)
+		offer_obj.remove(token_id)
+	elif key == "offer4":
+		offer_obj = db.child('Offers4').child(uid)
+		offer_obj.remove(token_id)
+	elif key == "offer5":
+		offer_obj = db.child('Offers5').child(uid)
 		offer_obj.remove(token_id)
 	elif key == 'location':
 		location_obj = db.child('Locations').child(uid)

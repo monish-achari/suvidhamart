@@ -44,6 +44,15 @@ urlpatterns = [
     path('offers/list/',list_offers,name='offerslist'),
     path('offer/add/',add_offer,name='offeradd'),
 
+    path('offers3/list/',list_offers_third,name='offerslist3'),
+    path('offer3/add/',add_offer_third,name='offeradd3'),
+
+    path('offers4/list/',list_offers_fourth,name='offerslist4'),
+    path('offer4/add/',add_offer_fourth,name='offeradd4'),
+
+    path('offers5/list/',list_offers_fifth,name='offerslist5'),
+    path('offer5/add/',add_offer_fifth,name='offeradd5'),
+
     path('offers2/list/',list_offers_second,name='offerslist2'),
     path('offer2/add/',add_offer_second,name='offeradd2'),
 
