@@ -7,6 +7,7 @@ from comman_functions import *
 import datetime as dt
 import json
 import uuid
+from grofer.settings import config
 """
 Error Handling Functions
 """
@@ -69,16 +70,16 @@ def handler500(request):
 #     "measurementId": "G-1XPPMM586R"
 # }
 
-config = {
-	"apiKey": "AIzaSyB3BBDXNT5wqjl39ai1HLKqWVcP-UwJnPk",
-    "authDomain": "suvidhamart-ffe81.firebaseapp.com",
-    "databaseURL": "https://suvidhamart-ffe81.firebaseio.com",
-    "projectId": "suvidhamart-ffe81",
-    "storageBucket": "suvidhamart-ffe81.appspot.com",
-    "messagingSenderId": "679083681841",
-    "appId": "1:679083681841:web:7f9b867f34f95522170d10",
-    "measurementId": "G-LY25JG837N"
-}
+# config = {
+# 	"apiKey": "AIzaSyB3BBDXNT5wqjl39ai1HLKqWVcP-UwJnPk",
+#     "authDomain": "suvidhamart-ffe81.firebaseapp.com",
+#     "databaseURL": "https://suvidhamart-ffe81.firebaseio.com",
+#     "projectId": "suvidhamart-ffe81",
+#     "storageBucket": "suvidhamart-ffe81.appspot.com",
+#     "messagingSenderId": "679083681841",
+#     "appId": "1:679083681841:web:7f9b867f34f95522170d10",
+#     "measurementId": "G-LY25JG837N"
+# }
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
@@ -279,6 +280,8 @@ def add_product(request):
 		token_id= request.session['uid']
 		grand_cat_name = all_grandcategories.get(product_grandcategory_id)
 		product_dict = {
+			"size":data.get('size'),
+			"color":data.get('color'),
 			"DealsOftheday":data.get('dofd'),
 			"RecommendedEssentials":data.get('recess'),
 			"DailyEssentials":data.get('de'),
@@ -459,6 +462,7 @@ def add_offer_second(request):
 			"Offer_Name":data.get('name'),
 			"Offer_Code":data.get('offer_code'),
 			"Offers_Image_Url":data.get('url'),
+			"SplashScreenImage":data.get('url2'),
 			# "Sub_Cat_Id":data.get('subcategory')
 			"Prodct_Id":data.getlist('subcategory')
 		}
@@ -579,6 +583,8 @@ def update_obj_page(request,obj,uid):
 			product_grandcategory_id = data.get('product_grandcategory_id')
 			grand_cat_name = all_grandcategories.get(product_grandcategory_id)
 			product_dict = {
+				"color":data.get('color'),
+				"size":data.get('size'),
 				"DealsOftheday":data.get('dofd'),
 				"RecommendedEssentials":data.get('recess'),
 				"DailyEssentials":data.get('de'),
@@ -715,6 +721,23 @@ def update_obj_page(request,obj,uid):
 			return redirect('offerslist5')
 
 
+	elif obj =='coupon':
+		coupon_details = dict(db.child("Coupons").child(uid).get(token_id).val())
+		template_name = 'admin_panel/coupon_update.html'
+		if  request.method == 'POST':
+			coupon_obj = db.child('Coupons').child(uid)
+			data = request.POST
+			coupon_dict = {
+			"CouponName":data.get('CouponName'),
+			"CouponDetails":data.get('CouponDetails'),
+			"DiscountPercentage":data.get('DiscountPercentage'),
+			"MaximumDiscountAmount":data.get('MaximumDiscountAmount'),
+			"Validity":data.get('Validity'),
+			}
+			coupon_obj.update(coupon_dict,token_id)
+			return redirect('couponslist')
+
+
 	elif obj == 'offers2':
 		all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
 		offer_details = dict(db.child("Offers2").child(uid).get(token_id).val())
@@ -733,6 +756,7 @@ def update_obj_page(request,obj,uid):
 			"Offer_Name":data.get('name'),
 			"Offer_Code":data.get('offer_code'),
 			"Offers_Image_Url":data.get('url') if data.get('url') else offer_details.get('Offers_Image_Url'),
+			"SplashScreenImage":data.get('url2') if data.get('url2') else offer_details.get('SplashScreenImage'),
 			"Prodct_Id":data.getlist('products'),
 			# "Sub_Cat_Id":data.get('subcategory')
 			}
@@ -1014,8 +1038,30 @@ def detais_cart(request,userid,cartid):
 	return render(request, template_name,locals())
 
 
+def list_coupons(request):
+	token_id = request.session['uid']
+	template_name = 'admin_panel/list_coupons.html'
+	all_coupons = dict(db.child('Coupons').get(token_id).val())
+	return render(request, template_name,locals())
 
 
+def add_coupon(request):	
+	template_name = 'admin_panel/add_coupon.html'
+	token_id= request.session['uid']
+	# all_categories = dict(db.child("Coupons").get(token_id).val())
+	if request.method=='POST':
+		data = request.POST
+		coupon_dict = {
+		"CouponName":data.get('CouponName'),
+		"CouponDetails":data.get('CouponDetails'),
+		"DiscountPercentage":data.get('DiscountPercentage'),
+		"MaximumDiscountAmount":data.get('MaximumDiscountAmount'),
+		"Validity":data.get('Validity'),
+		}
+		add_data_to_table(db,token_id,coupon_dict,"Coupons","Coupon_Id","Coupon_Created_Date","Coupon_Modified_Date")
+		# db.child('ProductSubCategory').push(subcategory_dict,token_id)
+		return redirect('couponslist')
+	return render(request, template_name,locals())
 
 
 

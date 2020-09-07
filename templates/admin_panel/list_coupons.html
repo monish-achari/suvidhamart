@@ -1,0 +1,104 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+<div class="main-panel" id="main-panel">
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Coupons Lists
+                  <a class="waves-effect waves-light btn" href="/coupon/add/">Add Coupon</a>
+                  &nbsp;&nbsp;&nbsp;<input type="text" id="IdmyInput" onkeyup="IdmyFunction()" placeholder="Search for Coupon" title="Type in a id" style="margin-left: 200px;">
+                  <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="IdmyInput" onkeyup="IdmyFunction()" placeholder="Search for id" title="Type in a id" style="margin-left: 485px;"> -->
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table" id="myTable">
+                    <thead class=" text-primary">
+                      <th>
+                        Coupon Name
+                      </th>
+                      <th>
+                        Discount Percentage
+                      </th>
+                      <th>
+                        Maximum Discount Amount
+                      </th>
+                      <th>
+                        Validity
+                      </th>
+                    </thead>
+                    <tbody>
+                      {% for key,val in all_coupons.items  %}
+                      <tr>
+                        <td>
+                            <a href="/coupon/edit/{{key}}/">{{val.CouponName}}</a>
+                        </td>
+                        <td>
+                            {{val.DiscountPercentage}}
+                        </td>
+                        <td>
+                            {{val.MaximumDiscountAmount}}
+                        </td>
+                        <td>
+                            {{val.Validity}}
+                        </td>
+                        
+                      </tr>                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+        </script>
+
+<script>
+  function IdmyFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("IdmyInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+  </script>
+
+{% endblock %}

@@ -148,3 +148,14 @@ ORDER_MAIL = {
     "to":"Essentialsordersnotification@gmail.com"
 }
 
+
+config = {
+    "apiKey": "AIzaSyB3BBDXNT5wqjl39ai1HLKqWVcP-UwJnPk",
+    "authDomain": "suvidhamart-ffe81.firebaseapp.com",
+    "databaseURL": "https://suvidhamart-ffe81.firebaseio.com",
+    "projectId": "suvidhamart-ffe81",
+    "storageBucket": "suvidhamart-ffe81.appspot.com",
+    "messagingSenderId": "679083681841",
+    "appId": "1:679083681841:web:7f9b867f34f95522170d10",
+    "measurementId": "G-LY25JG837N"
+}

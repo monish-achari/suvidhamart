@@ -1,0 +1,64 @@
+{% extends "admin_panel/base.html" %}
+{% block midpart %}
+  <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Edit Coupon</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST">
+                 {% csrf_token %} 
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Coupon Name</label>
+                        <input type="text" class="form-control" name="CouponName" placeholder="Coupon Name" required="true" value="{{coupon_details.CouponName}}">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Coupon Details</label>
+                        <input type="text" class="form-control" name="CouponDetails" placeholder="Coupon Details" required="true" value="{{coupon_details.CouponDetails}}">
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Discount Percentage</label>
+                        <input type="text" class="form-control" name="DiscountPercentage" placeholder="Discount Percentage" required="true" value="{{coupon_details.DiscountPercentage}}">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Maximum Discount Amount</label>
+                        <input type="text" class="form-control" name="MaximumDiscountAmount" placeholder="Maximum Discount Amount" required="true" value="{{coupon_details.MaximumDiscountAmount}}">
+                      </div>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Validity</label>
+                        <input type="text" class="form-control" name="Validity" placeholder="Validity" required="true" value="{{coupon_details.Validity}}">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1"> 
+                      <div class="form-group">
+                        <input type="submit" class="form-control" >
+                      </div>
+                    </div>
+                </form>
+              </div>
+            </District>
+          </div>
+        </div>
+      </Pincode
+
+{% endblock %}

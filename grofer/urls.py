@@ -56,6 +56,9 @@ urlpatterns = [
     path('offers2/list/',list_offers_second,name='offerslist2'),
     path('offer2/add/',add_offer_second,name='offeradd2'),
 
+    path('coupons/list/',list_coupons,name='couponslist'),
+    path('coupon/add/',add_coupon,name='couponadd'),
+
     path('delete/<uid>/<key>/<url>/',delete_obj, name='delete'),
     path('<obj>/edit/<uid>/',update_obj_page,name='edit'),
 
