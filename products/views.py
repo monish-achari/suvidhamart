@@ -450,10 +450,12 @@ def add_offer_second(request):
 	token_id = request.session['uid']
 	template_name = 'admin_panel/add_offer2.html'
 	# all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
+	time_slot_24 = range(1,25)
 	all_products = dict(db.child("Product").get(token_id).val())
 	if request.method=='POST':
 		data = request.POST
 		offer_dict = {
+			"DeliveryTimeSlot":data.get("DeliveryTimeSlot"),
 			"WalletPercentageUsed":data.get('WalletPercentageUsed'),
 			"TotalMRPForUsingwallet":data.get('TotalMRPForUsingwallet'),
 			"MaximumwalletAmountForOrder":data.get('MaximumwalletAmountForOrder'),
@@ -742,12 +744,14 @@ def update_obj_page(request,obj,uid):
 		all_subcategories = dict(db.child("ProductSubCategory").get(token_id).val())
 		offer_details = dict(db.child("Offers2").child(uid).get(token_id).val())
 		all_products = dict(db.child("Product").get(token_id).val())
+		time_slot_24 = range(1,25)
 		template_name = 'admin_panel/offer2_update.html'
 		if  request.method == 'POST':
 			offer_obj = db.child('Offers2').child(uid)
 			data = request.POST
 			offer_dict = {
 			"WalletPercentageUsed":data.get('WalletPercentageUsed'),
+			"DeliveryTimeSlot":data.get('DeliveryTimeSlot'),
 			"TotalMRPForUsingwallet":data.get('TotalMRPForUsingwallet'),
 			"MaximumwalletAmountForOrder":data.get('MaximumwalletAmountForOrder'),
 			"Offer_Modified_Date":str(dt.datetime.now()),

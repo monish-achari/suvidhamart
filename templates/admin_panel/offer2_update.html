@@ -98,6 +98,20 @@
                       </div>
                     </div>
                     <!--  -->
+                    <!--  -->
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Delivery Time Slot</label>
+                        <select name="DeliveryTimeSlot" class="form-control">
+                            {% for key in time_slot_24  %}
+                             {% if offer_details.DeliveryTimeSlot == key %}
+                <option value="{{offer_details.DeliveryTimeSlot}}" selected>{{offer_details.DeliveryTimeSlot}}</option>{% else %}
+                          <option value="{{key}}">{{key}}</option>{% endif%}
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <!--  -->
                     <div class="col-md-6 px-1">
                   <label >Splash Screen Image</label>
                         <img src="{{offer_details.SplashScreenImage}}" alt="{{offer_details.SplashScreenImage}}" height="200px;" width="200px;">

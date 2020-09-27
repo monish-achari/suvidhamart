@@ -53,6 +53,20 @@
                         <input type="text" class="form-control" name="expire_date" placeholder="Expire date" required="true">
                       </div>
                     </div>
+                    <!--  -->
+                                        <!--  -->
+                    <div class="col-md-6 px-1">
+                      <div class="form-group">
+                        <label>Delivery Time Slot</label>
+                        <select name="DeliveryTimeSlot" class="form-control">
+                            {% for key in time_slot_24  %}
+                          <option value="{{key}}">{{key}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
                     <!-- extra sections -->
                     <div class="col-md-6 px-1">
                         <div class="form-group">
